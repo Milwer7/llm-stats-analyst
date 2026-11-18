@@ -1,0 +1,99 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #1c2330;
+  --muted: #5d6778;
+  --border: #dde1e8;
+  --accent: #3b5bdb;
+  --accent-text: #ffffff;
+  --ok: #2b8a3e;
+  --danger: #c92a2a;
+  --code-bg: #f1f3f5;
+  color-scheme: light;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151b;
+    --surface: #1b2029;
+    --text: #e6e9ef;
+    --muted: #98a2b3;
+    --border: #2c3340;
+    --accent: #7491ff;
+    --accent-text: #0d1020;
+    --ok: #69db7c;
+    --danger: #ff8787;
+    --code-bg: #232a35;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+h1, h2, h3 { margin: 0; line-height: 1.2; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.15rem; }
+h3 { font-size: 1rem; margin-top: 1.5rem; }
+code, pre { font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace; font-size: 0.85em; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 2rem 1rem 4rem; display: grid; gap: 1.25rem; }
+.app-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+.muted { color: var(--muted); }
+.center { text-align: center; }
+
+.status { font-size: 0.8rem; padding: 0.3rem 0.7rem; border-radius: 999px; border: 1px solid var(--border); }
+.status.ok { color: var(--ok); }
+.status.down { color: var(--danger); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+.card-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+
+.dropzone {
+  display: grid; gap: 0.3rem; place-items: center; text-align: center;
+  padding: 2rem 1rem; border: 2px dashed var(--border); border-radius: 12px;
+  background: var(--surface); cursor: pointer; transition: border-color 0.15s;
+}
+.dropzone:hover, .dropzone.dragging { border-color: var(--accent); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.chip { display: inline-flex; flex-direction: column; padding: 0.35rem 0.65rem; border-radius: 8px; background: var(--code-bg); font-size: 0.85rem; border-left: 3px solid var(--muted); }
+.chip small { color: var(--muted); font-size: 0.72rem; }
+.chip.kind-numeric { border-left-color: #4c6ef5; }
+.chip.kind-categorical { border-left-color: #f08c00; }
+.chip.kind-binary { border-left-color: #37b24d; }
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { color: var(--muted); font-weight: 600; }
+
+.question-form { display: grid; gap: 0.75rem; }
+textarea {
+  width: 100%; resize: vertical; font: inherit; color: var(--text); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem;
+}
+textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+button {
+  font: inherit; cursor: pointer; border: none; border-radius: 8px;
+  padding: 0.6rem 1.1rem; background: var(--accent); color: var(--accent-text); font-weight: 600;
+  justify-self: end;
+}
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); font-weight: 400; font-size: 0.8rem; padding: 0.35rem 0.7rem; text-align: left; }
+button.ghost:hover { color: var(--text); border-color: var(--accent); }
+.examples { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+
+.markdown :first-child { margin-top: 0; }
+.markdown p, .markdown li { line-height: 1.6; }
+
+.steps { padding-left: 1.25rem; display: grid; gap: 0.5rem; }
+.step summary { cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
+.step pre { background: var(--code-bg); padding: 0.75rem; border-radius: 8px; overflow-x: auto; max-height: 360px; }
+.pill { font-size: 0.75rem; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--code-bg); color: var(--muted); }
+.pill.danger { color: var(--danger); }
+
+.error-banner, .warning { border-radius: 8px; padding: 0.75rem 1rem; margin: 0; }
+.error-banner { background: color-mix(in srgb, var(--danger) 12%, transparent); color: var(--danger); }
+.warning { background: color-mix(in srgb, #f08c00 15%, transparent); }
